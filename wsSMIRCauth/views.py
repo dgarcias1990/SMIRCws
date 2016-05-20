@@ -9,6 +9,6 @@ def wsLogin(request):
 		queryset = InicioUserapp.objects.all().get(email=usuario,contrasena=contrasena)
 		data={'estatus':'ok','usuario':queryset.email,'id':queryset.id}
 		return HttpResponse(json.dumps(data), content_type="application/json")
-	except (RuntimeError, TypeError, NameError):
+	except:
 		data={'estatus':'fallo'}
 		return HttpResponse(json.dumps(data), content_type="application/json")
