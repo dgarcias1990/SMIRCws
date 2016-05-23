@@ -12,3 +12,7 @@ def wsLogin(request):
 	except:
 		data={'estatus':'fallo'}
 		return HttpResponse(json.dumps(data), content_type="application/json")
+def wsLocationsRegister(request):
+	data=json.loads(request.body)
+	print data
+	return HttpResponse('')
