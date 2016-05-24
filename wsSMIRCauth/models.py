@@ -32,7 +32,7 @@ class InicioLocalization(models.Model):
     latitud = models.FloatField()
     longitud = models.FloatField()
     altitud = models.FloatField()
-    charla = models.IntegerField()
+    charla = models.BooleanField()
     fechahora = models.DateTimeField(db_column='fechaHora')  # Field name made lowercase.
 
     class Meta:
