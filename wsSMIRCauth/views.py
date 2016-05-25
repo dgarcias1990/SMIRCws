@@ -21,23 +21,23 @@ def wsLogin(request):
 
 @csrf_exempt
 def wsLocationsRegister(request):
-	# try:
-	data=json.loads(request.body)
-	instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
-	for item in data['locations']:
-		instance=InicioLocalization()
-		instance.usuario=instanceUser
-		instance.latitud=item['lat']
-		instance.longitud=item['lon']
-		instance.altitud=item['alto']
-		instance.charla=item['voz']
-		instance.fechahora=item['hora']
+	try:
+		data=json.loads(request.body)
+		instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
+		for item in data['locations']:
+			instance=InicioLocalization()
+			instance.usuario=instanceUser
+			instance.latitud=item['lat']
+			instance.longitud=item['lon']
+			instance.altitud=item['alto']
+			instance.charla=item['voz']
+			instance.fechahora=item['hora']
 		#instance.fechaHora=datetime.strptime("'"+item["hora"]+"'", ))
 		#instance.fechaHora=parse_datetime(item['hora'])
-		print instance.fechahora
-		instance.save()
-	resp={'codigo':'registro','estatus':'ok'}
-	# except:
-	# resp={'codigo':'registro','estatus':'fallo'}
+			print instance.fechahora
+			instance.save()
+		resp={'codigo':'registro','estatus':'ok'}
+	except:
+		resp={'codigo':'registro','estatus':'fallo'}
 
 	return HttpResponse(json.dumps(resp),content_type="application/json")
