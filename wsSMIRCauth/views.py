@@ -16,7 +16,7 @@ def wsLogin(request):
 			data={'codigo':'login','estatus':'ocupado'}
 		else:
 			InicioUserapp.objects.filter(email=usuario).update(lastlogin=datetime.now(), sesionactiva=True)
-			print timezone.localtime(timezone.now())
+		#print timezone.localtime(timezone.now())
 			data={'codigo':'login','estatus':'ok','usuario':queryset.email,'id':queryset.id}
 	except:
 		data={'codigo':'login','estatus':'fallo'}
