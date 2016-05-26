@@ -12,9 +12,12 @@ def wsLogin(request):
 	contrasena=request.GET['contrasena']
 	try:
 		queryset = InicioUserapp.objects.all().get(email=usuario,contrasena=contrasena)
-		InicioUserapp.objects.filter(email=usuario).update(lastlogin=datetime.now())
-		# print timezone.localtime(timezone.now())
-		data={'codigo':'login','estatus':'ok','usuario':queryset.email,'id':queryset.id}
+		if queryset.sesionactiva :
+			data={'codigo':'login','estatus':'ocupado'}
+		else:
+			InicioUserapp.objects.filter(email=usuario).update(lastlogin=datetime.now(), sesionactiva=True)
+			print timezone.localtime(timezone.now())
+			data={'codigo':'login','estatus':'ok','usuario':queryset.email,'id':queryset.id}
 	except:
 		data={'codigo':'login','estatus':'fallo'}
 	return HttpResponse(json.dumps(data), content_type="application/json")
@@ -41,3 +44,8 @@ def wsLocationsRegister(request):
 		resp={'codigo':'registro','estatus':'fallo'}
 
 	return HttpResponse(json.dumps(resp),content_type="application/json")
+def wsLogout(request):
+	usuario=request.GET['usuario']
+	InicioUserapp.objects.filter(email=usuario).update(sesionactiva=False)
+	resp={'codigo':'logout'}
+	return HttpResponse(json.dumps(resp), content_type="application/json")
