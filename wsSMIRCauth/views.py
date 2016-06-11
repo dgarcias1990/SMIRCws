@@ -20,6 +20,8 @@ def wsLogin(request):
 			data={'codigo':'login','estatus':'ok','usuario':queryset.email,'id':queryset.id}
 	except:
 		data={'codigo':'login','estatus':'fallo'}
+	print request
+	print data
 	return HttpResponse(json.dumps(data), content_type="application/json")
 
 @csrf_exempt
@@ -42,6 +44,7 @@ def wsLocationsRegister(request):
 		resp={'codigo':'registro','estatus':'ok'}
 	except:
 		resp={'codigo':'registro','estatus':'fallo'}
+
 
 	return HttpResponse(json.dumps(resp),content_type="application/json")
 def wsLogout(request):
