@@ -45,7 +45,8 @@ def wsLocationsRegister(request):
 	except:
 		resp={'codigo':'registro','estatus':'fallo'}
 
-
+	print data
+	print resp
 	return HttpResponse(json.dumps(resp),content_type="application/json")
 def wsLogout(request):
 	usuario=request.GET['usuario']
