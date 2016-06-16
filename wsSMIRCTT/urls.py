@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include, url
-from wsSMIRCauth.views import wsLogin, wsLocationsRegister,wsLogout,wsRutaMaps,showMap
+from wsSMIRCauth.views import wsLogin, wsLocationsRegister,wsLogout,wsRutaMaps,saveDatatoRoute
 
 urlpatterns = [
     url(r'^wsLogin/$', wsLogin,name='wsLogin'),
