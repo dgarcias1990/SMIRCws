@@ -85,9 +85,11 @@ def wsRutaMaps(request):
 
 	return render(request,"RutasMaps.html",{'inicializar':mapasCode})
 
+@csrf_exempt
 def saveDatatoRoute(request):
 	try:
 		data=json.loads(request.body)
+		print data
 		instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
 		for item in data['locations']:
 			instance=InicioLocalization()
