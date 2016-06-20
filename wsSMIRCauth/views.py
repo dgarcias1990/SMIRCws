@@ -58,6 +58,7 @@ def wsLogout(request):
 def saveDatatoRoute(request):
 	#try:
 	data=json.loads(request.body)
+	print request.body
 	instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
 	for item in data['locations']:
 		instance=InicioLocalization()
@@ -71,7 +72,9 @@ def saveDatatoRoute(request):
 		#instance.fechaHora=parse_datetime(item['hora'])
 		print instance.fechahora			
 		instance.save()
-	uri="http://wsmirc.herokuapp.com/userRoute/?usuario={0}&fecha={1}".format(data['usuario'],date.today().iso_format())
+	fecha=date.today().iso_format()
+	print "vamos a calcular la uri"
+	uri="http://wsmirc.herokuapp.com/userRoute/?usuario={0}&fecha={1}".format(data['usuario'],fecha)
 	print uri
 	#resp={'codigo':'ruta','estatus':'ok', 'uri':uri}
 	#except:
