@@ -58,24 +58,25 @@ def wsLogout(request):
 def saveDatatoRoute(request):
 	#try:
 	data=json.loads(request.body)
-	print request.body
-	instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
-	for item in data['locations']:
-		instance=InicioLocalization()
-		instance.usuario=instanceUser
-		instance.latitud=item['lat']
-		instance.longitud=item['lon']
-		instance.altitud=item['alto']
-		instance.charla=item['voz']
-		instance.fechahora=item['hora']
+	usuarioinstancia=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
+	for locate in data['locations']:
+		instancia=InicioLocalization()
+		instancia.usuario=usuarioinstancia
+		instancia.latitud=item['lat']
+		instancia.longitud=item['lon']
+		instancia.altitud=item['alto']
+		instancia.charla=item['voz']
+		instancia.fechahora=item['hora']
 		#instance.fechaHora=datetime.strptime("'"+item["hora"]+"'", ))
 		#instance.fechaHora=parse_datetime(item['hora'])
-		print instance.fechahora			
-		instance.save()
+		print instancia.fechahora			
+		instancia.save()
+	
 	fecha=date.today().iso_format()
+	print fecha
 	print "vamos a calcular la uri"
-	uri="http://wsmirc.herokuapp.com/userRoute/?usuario={0}&fecha={1}".format(data['usuario'],fecha)
-	print uri
+	urisita="http://wsmirc.herokuapp.com/userRoute/?usuario=%s&fecha=%s"%(data['usuario'],fecha)
+	print urisita
 	#resp={'codigo':'ruta','estatus':'ok', 'uri':uri}
 	#except:
 	resp={'codigo':'ruta','estatus':'fallo'}
