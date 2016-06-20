@@ -56,26 +56,26 @@ def wsLogout(request):
 
 @csrf_exempt
 def saveDatatoRoute(request):
-	try:
-		data=json.loads(request.body)
-		print data
-		instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
-		for item in data['locations']:
-			instance=InicioLocalization()
-			instance.usuario=instanceUser
-			instance.latitud=item['lat']
-			instance.longitud=item['lon']
-			instance.altitud=item['alto']
-			instance.charla=item['voz']
-			instance.fechahora=item['hora']
+	#try:
+	data=json.loads(request.body)
+	instanceUser=InicioUserapp.objects.all().get(id=data['id'],email=data['usuario'])
+	for item in data['locations']:
+		instance=InicioLocalization()
+		instance.usuario=instanceUser
+		instance.latitud=item['lat']
+		instance.longitud=item['lon']
+		instance.altitud=item['alto']
+		instance.charla=item['voz']
+		instance.fechahora=item['hora']
 		#instance.fechaHora=datetime.strptime("'"+item["hora"]+"'", ))
 		#instance.fechaHora=parse_datetime(item['hora'])
-			print instance.fechahora
-			instance.save()
-			uri="http://wsmirc.herokuapp.com/userRoute/?usuario={0}&fecha={1}".format(data['usuario'],date.today().iso_format())
-		resp={'codigo':'ruta','estatus':'ok', 'uri':uri}
-	except:
-		resp={'codigo':'ruta','estatus':'fallo'}
+		print instance.fechahora			
+		instance.save()
+	uri="http://wsmirc.herokuapp.com/userRoute/?usuario={0}&fecha={1}".format(data['usuario'],date.today().iso_format())
+	print uri
+	#resp={'codigo':'ruta','estatus':'ok', 'uri':uri}
+	#except:
+	resp={'codigo':'ruta','estatus':'fallo'}
 
 	print data
 	print resp
