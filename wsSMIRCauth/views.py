@@ -69,7 +69,7 @@ def saveDatatoRoute(request):
 		instancia.fechahora=locate['hora']
 		#instance.fechaHora=datetime.strptime("'"+item["hora"]+"'", ))
 		#instance.fechaHora=parse_datetime(item['hora'])
-		instancia.fechahora
+		print instancia.fechahora
 		instancia.save()			
 		
 	
