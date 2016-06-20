@@ -79,7 +79,7 @@ def saveDatatoRoute(request):
 		print "vamos a calcular la uri"
 		urisita="http://wsmirc.herokuapp.com/userRoute/?usuario=%s&fecha=%s"%(data['usuario'],fechareal)
 		print urisita
-		resp={'codigo':'ruta','estatus':'ok', 'uri':uri}
+		resp={'codigo':'ruta','estatus':'ok', 'uri':urisita}
 	except:
 		resp={'codigo':'ruta','estatus':'fallo'}
 
