@@ -69,13 +69,15 @@ def saveDatatoRoute(request):
 		instancia.fechahora=locate['hora']
 		#instance.fechaHora=datetime.strptime("'"+item["hora"]+"'", ))
 		#instance.fechaHora=parse_datetime(item['hora'])
-		print instancia.fechahora			
-		instancia.save()
+		fecha=instancia.fechahora
+		instancia.save()		
+	fechareal=fecha.strftime('%Y-%m-%d')	
+		
 	
 	#fecha=date.today().iso_format()
 	#print fecha
 	print "vamos a calcular la uri"
-	urisita="http://wsmirc.herokuapp.com/userRoute/?usuario=%s&fecha=%s"%(data['usuario'],'2016-06-20')
+	urisita="http://wsmirc.herokuapp.com/userRoute/?usuario=%s&fecha=%s"%(data['usuario'],fechareal)
 	print urisita
 	#resp={'codigo':'ruta','estatus':'ok', 'uri':uri}
 	#except:
