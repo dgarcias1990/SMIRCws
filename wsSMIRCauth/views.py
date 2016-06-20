@@ -62,11 +62,11 @@ def saveDatatoRoute(request):
 	for locate in data['locations']:
 		instancia=InicioLocalization()
 		instancia.usuario=usuarioinstancia
-		instancia.latitud=item['lat']
-		instancia.longitud=item['lon']
-		instancia.altitud=item['alto']
-		instancia.charla=item['voz']
-		instancia.fechahora=item['hora']
+		instancia.latitud=locate['lat']
+		instancia.longitud=locate['lon']
+		instancia.altitud=locate['alto']
+		instancia.charla=locate['voz']
+		instancia.fechahora=locate['hora']
 		#instance.fechaHora=datetime.strptime("'"+item["hora"]+"'", ))
 		#instance.fechaHora=parse_datetime(item['hora'])
 		print instancia.fechahora			
